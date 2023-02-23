@@ -2,10 +2,11 @@
 id: kium9oyomtdzrf5n4z64kce
 title: References
 desc: ''
-updated: 1677193822731
+updated: 1677193872507
 created: 1676808458265
 ---
-**Main references**
+**Main papers**
+
 [Hyper-spectral Image Classification using Adiabatic Quantum Computation](https://www.researchgate.net/publication/367340565_Hyper-spectral_Image_Classification_using_Adiabatic_Quantum_Computation?channel=doi&linkId=63ce5be16fe15d6a57423cc4&showFulltext=true)
 
 
