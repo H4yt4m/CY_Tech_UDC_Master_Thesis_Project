@@ -2,7 +2,7 @@
 id: kium9oyomtdzrf5n4z64kce
 title: References
 desc: ''
-updated: 1676815482458
+updated: 1677193822731
 created: 1676808458265
 ---
 **Main references**
@@ -26,4 +26,10 @@ created: 1676808458265
 [Quantum Annealing: A New Method for Minimizing Multidimensional Functions](https://arxiv.org/abs/chem-ph/9404003v2)
 
 [Quantum Annealing in the Transverse Ising Model](https://arxiv.org/abs/cond-mat/9804280v1)
+
+**My references**
+
+[Machine Learning Catalog](https://machinelearningcatalogue.com/about.html)
+
+[Undirected Graphical Models](https://www.researchgate.net/publication/226826838_Undirected_Graphical_Models)
 
