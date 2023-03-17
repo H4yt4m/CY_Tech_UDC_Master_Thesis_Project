@@ -2,13 +2,8 @@
 id: rxfpt42njagrwsdl7pxu2zp
 title: Todo
 desc: ''
-updated: 1677922667768
+updated: 1679032596568
 created: 1676806648487
 ---
-- NO MORE JUPYTER -> TIME FOR APIs
-- Reimplement from scratch the ising model
-- To check : 
-    - https://mattbierbaum.github.io/ising.js/
-    - https://compphys.quantumtinkerer.tudelft.nl/proj2-intro-ising/
-    - https://clark.physics.illinois.edu/html/Ising/IsingModel.html
-    - https://github.com/mattbierbaum/ising.js/blob/master/ising.js
+- Compare the results of our "future" algorithm with an open source parallel and/or GPU optimized implementation.
+- Find a hyperspectral image with pixel classes defined.

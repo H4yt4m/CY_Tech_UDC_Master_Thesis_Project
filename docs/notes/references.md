@@ -2,7 +2,7 @@
 id: kium9oyomtdzrf5n4z64kce
 title: References
 desc: ''
-updated: 1677750906335
+updated: 1679035005665
 created: 1676808458265
 ---
 
@@ -61,3 +61,14 @@ created: 1676808458265
 ## Others
 
 [Add Webpages' snapshots as PDFs in Zotero](https://forums.zotero.org/discussion/81185/feature-request-optionally-save-web-pages-as-pdf-and-a-list-of-tools-that-might-help)
+
+## Review these 
+https://phas.ubc.ca/~rozali/8.pdf
+https://mattbierbaum.github.io/ising.js/
+https://compphys.quantumtinkerer.tudelft.nl/proj2-intro-ising/
+https://clark.physics.illinois.edu/html/Ising/IsingModel.html
+https://github.com/mattbierbaum/ising.js/blob/master/ising.js
+https://rajeshrinet.github.io/blog/2014/ising-model/ (checking rn)
+https://github.com/MohamedElashri/IsingModel/blob/main/Python/Ising.ipynb
+https://github.com/lukepolson/youtube_channel/blob/main/Python%20Metaphysics%20Series/vid14.ipynb
+https://github.com/syamkakarla98/Hyperspectral_Image_Analysis_Simplified/blob/master/Data/Dataset.csv

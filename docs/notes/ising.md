@@ -2,7 +2,7 @@
 id: obfwtlye44igeg3v9qna8qm
 title: Ising
 desc: ''
-updated: 1677833813467
+updated: 1679032977702
 created: 1677833535713
 ---
 - Hamiltonian : 
@@ -17,7 +17,7 @@ created: 1677833535713
     - $$H(s)=-\sum_ih_is_i-\beta\sum_{i~j}s_is_j$$
     - For a given pixel : 
         - $$h_i$$ : Likelyhood / Energy of being in a particular class.
-        - $$\beta$$ : How strongly its neighboors wants it to be in their class.
+        - $$\beta$$ : How strongly its neighboors wants it to be in their class (magnetic moment).
     - Its basically, in terms of MRF, maximum aposteriori probability of a MRF.
     - The graph is given by a grid (Image).
 
