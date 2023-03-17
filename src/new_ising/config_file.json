@@ -1,0 +1,6 @@
+{
+    "input_path" : "",
+    "output_path" : "",
+    "max_iterations" : 1000,
+    "beta" : 0.2
+}
