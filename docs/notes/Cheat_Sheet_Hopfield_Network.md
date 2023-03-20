@@ -1,9 +1,9 @@
 ---
-id: vwtbcuy5ktxiy1z88hfyb5t
-title: Hopfield_network
+id: h6y975vfv01w1j6m7cqdnyj
+title: Cheat_Sheet_Hopfield_Network
 desc: ''
-updated: 1677137833343
-created: 1677137455127
+updated: 1679302990522
+created: 1679302983926
 ---
 - Neural network.
 - Same type of neurons (no input, hidden and output...).

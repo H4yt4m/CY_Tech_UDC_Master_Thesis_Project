@@ -2,7 +2,7 @@
 id: kium9oyomtdzrf5n4z64kce
 title: References
 desc: ''
-updated: 1679035005665
+updated: 1679325480742
 created: 1676808458265
 ---
 
@@ -28,13 +28,58 @@ created: 1676808458265
 
 [Quantum Annealing in the Transverse Ising Model](https://arxiv.org/abs/cond-mat/9804280v1)
 
-## Interesting resources
+#### Book
 
-[Piotr's Lecture with Quantum AI Foundation](https://youtu.be/hCwrGXut7_g?t=3113)
+[Mathematical Models for Remote Sensing Image Processing](https://link.springer.com/book/10.1007/978-3-319-66330-2)
+
+## Other Researchers
+
+[Farid Melgani](https://scholar.google.com/citations?user=j5MVrE0AAAAJ&hl=en)
+
+[Gabriele Moser](https://scholar.google.it/citations?user=mpIO0T8AAAAJ&hl=en)
+
+## Other Ressources
+
+#### Ising Simulation
+
+[Ising Model Simulation](https://clark.physics.illinois.edu/html/Ising/Overview.html)
+
+[The Ising model](https://phas.ubc.ca/~rozali/8.pdf)
+
+[Monte Carlo simulations for the Ising model](https://compphys.quantumtinkerer.tudelft.nl/proj2-intro-ising/)
+
+[Ising Model](https://rajeshrinet.github.io/blog/2014/ising-model/)
+
+#### MRF
+[Undirected Graphical Models](https://www.researchgate.net/publication/226826838_Undirected_Graphical_Models)
+
+[Markov Random Field Optimisation](https://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/AV0809/ORCHARD/)
+
+[Image segmentation and denoising with MRF](https://github.com/AliMorty/Markov-Random-Field-Project/blob/master/Codes/Complete_version.ipynb)
+
+#### ML
 
 [Machine Learning Catalog](https://machinelearningcatalogue.com/about.html)
 
-[Undirected Graphical Models](https://www.researchgate.net/publication/226826838_Undirected_Graphical_Models)
+#### D-Wave
+
+[D-Wave : Chimera embedding](https://github.com/dwavesystems/chimera-embedding)
+
+[D-Wave : sample_markov_network](https://docs.ocean.dwavesys.com/en/stable/docs_dnx/reference/algorithms/generated/dwave_networkx.algorithms.markov.sample_markov_network.html#dwave_networkx.algorithms.markov.sample_markov_network)
+
+[D-Wave : What is Quantum Annealing ?](https://docs.dwavesys.com/docs/latest/c_gs_2.html)
+
+#### Quantum Computing
+
+[Gabriele's Lecture](https://www.gabriele-cavallaro.com/teaching/course-artificial-intelligence-earth-observation-high-performance-computing-quantum-computing-2021)
+
+[Piotr's Lecture with Quantum AI Foundation](https://youtu.be/hCwrGXut7_g?t=3113)
+
+#### Workflow Tips and Tricks
+
+[Add Webpages' snapshots as PDFs in Zotero](https://forums.zotero.org/discussion/81185/feature-request-optionally-save-web-pages-as-pdf-and-a-list-of-tools-that-might-help)
+
+## Other links
 
 [A Performance Study of the 2D Ising Model on GPUs](https://arxiv.org/abs/1906.06297)
 
@@ -42,33 +87,12 @@ created: 1676808458265
 
 [GPU-accelerated Monte Carlo simulations of 2D Ising Model](https://github.com/NVIDIA/ising-gpu)
 
-[Markov Random Field Optimisation](https://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/AV0809/ORCHARD/)
-
-[D-Wave sample_markov_network](https://docs.ocean.dwavesys.com/en/stable/docs_dnx/reference/algorithms/generated/dwave_networkx.algorithms.markov.sample_markov_network.html#dwave_networkx.algorithms.markov.sample_markov_network)
-
-[Farid Melgani](https://scholar.google.com/citations?user=j5MVrE0AAAAJ&hl=en)
-
-[Gabriele Moser](https://scholar.google.it/citations?user=mpIO0T8AAAAJ&hl=en)
-
-[What is Quantum Annealing ?](https://docs.dwavesys.com/docs/latest/c_gs_2.html)
-
-## Other interesting links
-
-[Quantum Machine Learning Workshop at KDD 2018](https://www.quantummachinelearning.org/qmlkdd2018.html)
+[Hyperspectral Dataset](https://github.com/syamkakarla98/Hyperspectral_Image_Analysis_Simplified/blob/master/Data/Dataset.csv)
 
 [Multispectral Remote Sensing Systems](https://www.e-education.psu.edu/geog480/node/494)
 
-## Others
+[Quantum Machine Learning Workshop at KDD 2018](https://www.quantummachinelearning.org/qmlkdd2018.html)
 
-[Add Webpages' snapshots as PDFs in Zotero](https://forums.zotero.org/discussion/81185/feature-request-optionally-save-web-pages-as-pdf-and-a-list-of-tools-that-might-help)
+[Ising Model Youtube](https://www.youtube.com/watch?v=K--1hlv9yv0)
 
-## Review these 
-https://phas.ubc.ca/~rozali/8.pdf
-https://mattbierbaum.github.io/ising.js/
-https://compphys.quantumtinkerer.tudelft.nl/proj2-intro-ising/
-https://clark.physics.illinois.edu/html/Ising/IsingModel.html
-https://github.com/mattbierbaum/ising.js/blob/master/ising.js
-https://rajeshrinet.github.io/blog/2014/ising-model/ (checking rn)
-https://github.com/MohamedElashri/IsingModel/blob/main/Python/Ising.ipynb
-https://github.com/lukepolson/youtube_channel/blob/main/Python%20Metaphysics%20Series/vid14.ipynb
-https://github.com/syamkakarla98/Hyperspectral_Image_Analysis_Simplified/blob/master/Data/Dataset.csv
+[Quantum Open Source Foundation Github](https://github.com/qosf/awesome-quantum-software#quantum-annealing)
