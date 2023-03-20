@@ -1,32 +1,29 @@
-# Reference : 
-
-# https://rajeshrinet.github.io/
 # https://rajeshrinet.github.io/blog/2014/ising-model/
+# https://itp.uni-frankfurt.de/~mwagner/teaching/C_WS19/projects/Ising_proj.pdf
+# https://tanyaschlusser.github.io/posts/mcmc-and-the-ising-model/
 
-
-# %matplotlib inline
-# from __future__ import division
 import numpy as np
 from numpy.random import rand
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import argparse
+import sys
+import json
 
-###### Image Preprocessing
-
-def read_image(path):
-    return mpimg.imread('img.jpg')
+def read_image(folder_path):
+    return mpimg.imread(folder_path + 'img.jpg')
 
 def rgb_to_grey_image(img):
     return np.dot(img[...,:3], [0.2989, 0.5870, 0.1140])
 
-def reshape_image(grey_img, square_length):
-    return grey_img[0:square_length, 0:square_length]
+def reshape_image(img, square_length):
+    return img[0:square_length, 0:square_length]
 
-def normalize_image(reshaped_img):
-    normalized_img = np.empty(reshaped_img.shape)
-    for i in range (reshaped_img.shape[0]):
-        for j in range (reshaped_img.shape[1]):
-            normalized_img[i,j] = reshaped_img[i,j]/255
+def normalize_image(img):
+    normalized_img = np.empty(img.shape)
+    for i in range (img.shape[0]):
+        for j in range (img.shape[1]):
+            normalized_img[i,j] = img[i,j]/255
     return normalized_img
 
 def default_preprocess_img(path):
@@ -35,52 +32,65 @@ def default_preprocess_img(path):
     temp3 = reshape_image(temp2, 300)
     return normalize_image(temp3)
 
-###### Ising :  
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    if sys.argv[1] == "--generate" :
+        parser.add_argument('--generate', dest='parameters_file_path', type=str, help='Add the configuration file to generate the lattice')
+        args = json.load(open(parameters_file_path))
+        return args   
+    # elif sys.argv[1] == some other mode ?
+    else :
+        print("Mode not recognized.")
+        return 0;
 
-def mcmove(config, N, beta):
-    ''' This is to execute the monte carlo moves using 
-    Metropolis algorithm such that detailed
-    balance condition is satisified'''
-    for i in range(N):
-        for j in range(N):            
-                a = np.random.randint(0, N)
-                b = np.random.randint(0, N)
-                s =  config[a, b]
-                nb = config[(a+1)%N,b] + config[a,(b+1)%N] + config[(a-1)%N,b] + config[a,(b-1)%N]
-                cost = 2*s*nb
-                if cost < 0:	
-                    s *= -1
-                elif rand() < np.exp(-cost*beta):
-                    s *= -1
-                config[a, b] = s
-    return config
-              
-                
-def configPlot(f, config, i, N, n_):
-    ''' This modules plts the configuration once passed to it along with time etc '''
-    X, Y = np.meshgrid(range(N), range(N))
-    sp =  f.add_subplot(3, 3, n_ )  
-    plt.setp(sp.get_yticklabels(), visible=False)
-    plt.setp(sp.get_xticklabels(), visible=False)      
-    plt.pcolormesh(X, Y, config, cmap=plt.cm.RdBu);
-    plt.title('Time=%d'%i); plt.axis('tight')
+def get_neighbours(config, x, y):
+    return [config[x+1,y], config[x-1,y], config[x,y+1], config[x,y-1]]
 
-def simulate():   
-    ''' This module simulates the Ising model'''
+def split_train_test(data):
+    # todo
+    return train, test
+
+def split_train(train):
+    #todo
+    return pixel_class, other_classes
+
+def binary_svm_classifier(img):
+    # todo
+    return 0
+
+def calculate_probabilities(data, x, y):
+    # todo
+    return 0
+
+def calculate_local_energy(pixel_proba):
+    return -log((1/pixel_proba)-1)/4
+
+def calculate_hamiltonian(configuration, x, y, beta):
+    # todo
+    return 0
+
+def step(configuration, beta):
+    x = np.random.randint(0, configuration.shape(0))
+    y = np.random.randint(0, configuration.shape(1))
+    cost = calculate_hamiltonian(configuration, x, y, beta)
+    if (cost < 0) or (rand() < np.exp(-cost*beta)):	
+        configuration[x, y] *= -1
+    return configuration
+
+def simulate():
+    args = parse_arguments();
+    input_path = args.get("input_path")
+    output_path = args.get("output_path")
+    max_iterations = args.get("max_iterations")
+    beta = args.get("max_iterations")
     config = default_preprocess_img('img.jpg')
-    N, temp = config.shape[0], .4        # Initialse the lattice
-
-    f = plt.figure(figsize=(15, 15), dpi=80);    
-    configPlot(f, config, 0, N, 1);
-    
-    msrmnt = 1001
     plt.imshow(config)
-    for i in range(msrmnt):
-        mcmove(config, N, 1.0/temp)
+    for i in range(max_iterations):
+        step(config, beta)
         if i == 1:       configPlot(f, config, i, N, 2);
         if i == 4:       configPlot(f, config, i, N, 3);
         if i == 32:      configPlot(f, config, i, N, 4);
         if i == 100:     configPlot(f, config, i, N, 5);
-        if i == 300:    configPlot(f, config, i, N, 6);
+        if i == 300:     configPlot(f, config, i, N, 6);  
 
 simulate()
