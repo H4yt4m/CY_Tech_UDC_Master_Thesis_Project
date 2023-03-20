@@ -2,9 +2,10 @@
 id: 8xmaqjhg745j8yq9z7ekew9
 title: Cheat_Sheet_Markov_Random_Field
 desc: ''
-updated: 1679304456801
+updated: 1679328619007
 created: 1679303558361
 ---
+- Also known as Markov Network.
 - Undirected graph.
 - **Node** : Discrete or Gaussian Probability distribution of random variables.
 - **Edge** : Strength of the dependence between both variables.
