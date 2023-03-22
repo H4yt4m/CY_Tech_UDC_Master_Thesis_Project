@@ -23,13 +23,17 @@ def read_files(HSI_path, GT_path):
     print(f"\nX shape: {X.shape}\ny shape: {y.shape}\n")
     return X, y
 
-def extract_pixels(X, y):
+def extract_pixels_one_vs_all_classes(X, y, class_number):
     q = X.reshape(-1, X.shape[2])
     df = pd.DataFrame(data = q)
-    df = pd.concat([df, pd.DataFrame(data = y.ravel())], axis=1)
+    temp = y.ravel()
+    for i in range(len(temp)):
+        if temp[i]!=class_number :
+            temp[i] = class_number+10
+    df = pd.concat([df, pd.DataFrame(data = temp)], axis=1)
     df.columns= [f'band{i}' for i in range(1, 1+X.shape[2])]+['class']
     df.to_csv('Dataset.csv')
-    return df
+    return df, np.reshape(temp, (145,145))
 
 def split_into_train_test(df, test_percentage):
     x = df[df['class'] != 0]
@@ -45,11 +49,15 @@ def plot_image(y, fig_name):
     plt.axis('off')
     plt.savefig(fig_name)
     plt.show()
+    
+def normalize_data(data):
+    # todo
+    return normalized_data
 
 def main():
     # SVM
     X, y = read_files('./Indian_pines_corrected.mat', './Indian_pines_gt.mat')
-    df = extract_pixels(X, y)
+    df, y = extract_pixels_one_vs_all_classes(X, y, 11)
     # Ques : Value of test ratio ?
     X_train, X_test, y_train, y_test = split_into_train_test(df, 0.2)
     # Ques : Value of C ? kernel ? cache_size ?
@@ -61,13 +69,16 @@ def main():
 
     l=[]
     for pixel in range(df.shape[0]):
-        if df.iloc[pixel, -1] == 0:
-            l.append(0)
-        else:
-            l.append(svm.predict(df.iloc[pixel, :-1].values.reshape(1, -1)))
+        # if df.iloc[pixel, -1] == 21:
+        #     l.append(21)
+        # else:
+        #     l.append(svm.predict(df.iloc[pixel, :-1].values.reshape(1, -1)))
+        l.append(svm.predict(df.iloc[pixel, :-1].values.reshape(1, -1)))
     clmap = np.array(l).reshape(145, 145).astype('float')
 
+    print("\n Ground Truth : \n")
     plot_image(y, 'IP_GT.png')
+    print("\n Prediction : \n")
     plot_image(clmap, 'IP_cmap.png')
     return 0
 
