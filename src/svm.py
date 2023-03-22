@@ -14,8 +14,10 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from scipy.io import loadmat
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import classification_report
 
-#!wget http://www.ehu.eus/ccwintco/uploads/6/67/Indian_pines_corrected.mat http://www.ehu.eus/ccwintco/uploads/c/c4/Indian_pines_gt.mat
+# !wget http://www.ehu.eus/ccwintco/uploads/6/67/Indian_pines_corrected.mat http://www.ehu.eus/ccwintco/uploads/c/c4/Indian_pines_gt.mat
 
 def read_files(HSI_path, GT_path):
     X = loadmat(HSI_path)[HSI_path.replace('/', '.').split('.')[-2].split()[0].lower()]
@@ -54,32 +56,37 @@ def normalize_data(data):
     # todo
     return normalized_data
 
-def main():
-    # SVM
-    X, y = read_files('./Indian_pines_corrected.mat', './Indian_pines_gt.mat')
-    df, y = extract_pixels_one_vs_all_classes(X, y, 11)
-    # Ques : Value of test ratio ?
-    X_train, X_test, y_train, y_test = split_into_train_test(df, 0.2)
-    # Ques : Value of C ? kernel ? cache_size ?
-    svm =  SVC(C = 100, kernel = 'rbf', cache_size = 10*1024)
-    svm.fit(X_train, y_train)
+def get_probabilities(dataframe, model):
+    probabilities=[]
+    for pixel in range(dataframe.shape[0]):
+        probabilities.append(model.predict_proba(dataframe.iloc[pixel, :-1].values.reshape(1, -1))[0])
+    return np.array(probabilities)
 
-    # Ques : Useful ?
-    # ypred = svm.predict(X_test)
-
+def visualise_prediction(dataframe, model):
     l=[]
-    for pixel in range(df.shape[0]):
-        # if df.iloc[pixel, -1] == 21:
-        #     l.append(21)
-        # else:
-        #     l.append(svm.predict(df.iloc[pixel, :-1].values.reshape(1, -1)))
-        l.append(svm.predict(df.iloc[pixel, :-1].values.reshape(1, -1)))
+    for pixel in range(dataframe.shape[0]):
+        l.append(model.predict(dataframe.iloc[pixel, :-1].values.reshape(1, -1)))
     clmap = np.array(l).reshape(145, 145).astype('float')
-
-    print("\n Ground Truth : \n")
-    plot_image(y, 'IP_GT.png')
     print("\n Prediction : \n")
     plot_image(clmap, 'IP_cmap.png')
+
+def main():
+    
+    X, y = read_files('./Indian_pines_corrected.mat', './Indian_pines_gt.mat')
+    df, y = extract_pixels_one_vs_all_classes(X, y, 11)
+    
+    X_train, X_test, y_train, y_test = split_into_train_test(df, 0.2)
+    
+    svm =  SVC(C = 100, kernel = 'rbf', cache_size = 10*1024, probability=True)
+    svm.fit(X_train, y_train)
+
+    probabilities = get_probabilities(df, svm)
+    print(probabilities[0:3])
+    
+    print("\n Ground Truth : \n")
+    plot_image(y, 'IP_GT.png')
+    visualise_prediction(df, svm)
+    
     return 0
 
 if __name__ == '__main__':
