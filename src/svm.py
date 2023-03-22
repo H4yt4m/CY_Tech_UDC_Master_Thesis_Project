@@ -7,6 +7,7 @@
 # http://www.ehu.eus/ccwintco/uploads/c/c4/Indian_pines_gt.mat
 
 import sys
+import time
 import plotly.express as px
 import matplotlib.pyplot as plt
 import numpy as np
@@ -72,12 +73,14 @@ def visualise_prediction(dataframe, model):
 
 def main():
     
+    start = time.time()
+    
     X, y = read_files('./Indian_pines_corrected.mat', './Indian_pines_gt.mat')
     df, y = extract_pixels_one_vs_all_classes(X, y, 11)
     
-    X_train, X_test, y_train, y_test = split_into_train_test(df, 0.2)
-    
-    svm =  SVC(C = 100, kernel = 'rbf', cache_size = 10*1024, probability=True)
+    X_train, X_test, y_train, y_test = split_into_train_test(df, 0.85)
+    svm =  SVC(C = 100, kernel = 'rbf', cache_size = 1024, gamma=1, probability=True)
+    # svm =  SVC(C = 100, kernel = 'rbf', cache_size = 1024, probability=True)
     svm.fit(X_train, y_train)
 
     probabilities = get_probabilities(df, svm)
@@ -86,6 +89,9 @@ def main():
     print("\n Ground Truth : \n")
     plot_image(y, 'IP_GT.png')
     visualise_prediction(df, svm)
+    
+    end = time.time()
+    print("The elapsed wall time in seconds is: {}s".format(end - start))
     
     return 0
 
