@@ -2,7 +2,7 @@
 id: kium9oyomtdzrf5n4z64kce
 title: References
 desc: ''
-updated: 1679404718103
+updated: 1679566490547
 created: 1676808458265
 ---
 
@@ -77,6 +77,9 @@ created: 1676808458265
 [Gabriele's Lecture](https://www.gabriele-cavallaro.com/teaching/course-artificial-intelligence-earth-observation-high-performance-computing-quantum-computing-2021)
 
 [Piotr's Lecture with Quantum AI Foundation](https://youtu.be/hCwrGXut7_g?t=3113)
+
+#### **Image Processing**
+[Relationships between pixels(Neighbours and Connectivity)](https://samirkhanal35.medium.com/relationships-between-pixels-neighbours-and-connectivity-d38e473cd994)
 
 #### **Workflow Tips and Tricks**
 
