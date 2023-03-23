@@ -78,17 +78,39 @@ def main():
     X, y = read_files('./Indian_pines_corrected.mat', './Indian_pines_gt.mat')
     df, y = extract_pixels_one_vs_all_classes(X, y, 11)
     
-    X_train, X_test, y_train, y_test = split_into_train_test(df, 0.85)
-    svm =  SVC(C = 100, kernel = 'rbf', cache_size = 1024, gamma=1, probability=True)
-    # svm =  SVC(C = 100, kernel = 'rbf', cache_size = 1024, probability=True)
-    svm.fit(X_train, y_train)
+    X_train, X_test, y_train, y_test = split_into_train_test(df, 0.95)
+    
+    # Comment one of the two different SVM implementations, depending on the choice
+    
+#     # SVM with GridSearchCV ##########################################################
+#     param_grid = {'C': [0.1, 10, 100], 
+#                   'cache_size' : [1*1024, 10*1024, 100*1024],
+#                   'kernel': ['rbf', 'poly', 'sigmoid'],
+#                   'probability' : [True]
+#              } 
+#     svm = GridSearchCV(SVC(), param_grid, refit = True, verbose = 3)
+#     svm.fit(X_train, y_train)
 
+#     print(svm.best_params_)
+#     print(svm.best_estimator_)
+
+#     grid_predictions = svm.predict(X_test)
+#     print(classification_report(y_test, grid_predictions))
+#     #################################################################################
+    
+    # Basic SVM #####################################################################
+    svm =  SVC(C=100, cache_size=1024, kernel='poly', probability=True)
+    svm.fit(X_train, y_train)
+    #################################################################################
+    
+    # Prediction and visualization ##################################################
     probabilities = get_probabilities(df, svm)
     print(probabilities[0:3])
     
     print("\n Ground Truth : \n")
     plot_image(y, 'IP_GT.png')
     visualise_prediction(df, svm)
+    #################################################################################
     
     end = time.time()
     print("The elapsed wall time in seconds is: {}s".format(end - start))
