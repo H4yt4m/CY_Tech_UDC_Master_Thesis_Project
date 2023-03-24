@@ -2,7 +2,7 @@
 id: kium9oyomtdzrf5n4z64kce
 title: References
 desc: ''
-updated: 1679566490547
+updated: 1679648165297
 created: 1676808458265
 ---
 
@@ -42,6 +42,8 @@ created: 1676808458265
 
 #### **Ising Simulation**
 
+[Seymur Jahangirov - MSN 514 - Lecture 23: Ising models](https://www.youtube.com/watch?v=nnw0Xlbj3JM)
+
 [Ising Model Simulation](https://clark.physics.illinois.edu/html/Ising/Overview.html)
 
 [The Ising model](https://phas.ubc.ca/~rozali/8.pdf)
@@ -51,6 +53,9 @@ created: 1676808458265
 [Ising Model](https://rajeshrinet.github.io/blog/2014/ising-model/)
 
 #### **MRF**
+
+[Markov chains and Markov Random Fields (MRFs)](https://www.cs.umd.edu/~djacobs/CMSC733/MarkovModelsMRFs.pdf)
+
 [Undirected Graphical Models](https://www.researchgate.net/publication/226826838_Undirected_Graphical_Models)
 
 [Markov Random Field Optimisation](https://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/AV0809/ORCHARD/)

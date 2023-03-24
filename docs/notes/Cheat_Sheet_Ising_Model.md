@@ -2,7 +2,7 @@
 id: 7kax0bbzlofb4xkw773kl8x
 title: Cheat_Sheet_Ising_Model
 desc: ''
-updated: 1679566445348
+updated: 1679647231821
 created: 1679303100940
 ---
 - Hamiltonian : 
@@ -24,5 +24,12 @@ created: 1679303100940
     - [Qiskit and Hamiltonian](https://qiskit.org/textbook/ch-applications/qaoa.html)
 
 - Configuration : Snapshots of the system, ie. specification of every moment's orientation {-1, +1}.
+
 - Hamiltonian : Energy of a given configuration of the system.
-- Chosen pixel connectivity : 4-connectivity (ie. both pixels are 4-adjacent with each other (2nd ie. q in the set of his h/v neighbors N4(p))) 
+
+- Chosen pixel connectivity : 
+    - 4-connectivity : Both pixels are 4-adjacent with each other (ie. q in the set of his h/v neighbors N4(p))
+     
+- Boltzmann distribution : 
+    - Probabilities from energies...
+    - ### $P(C_i) = \frac {e^{\frac{-E_i}{K_B T}}}{\sum_i {e^{\frac{-E_i}{K_B T}}}}$

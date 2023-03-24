@@ -2,7 +2,7 @@
 id: wxca6y2tvdtzc9vti55idx3
 title: Questions
 desc: ''
-updated: 1679525259205
+updated: 1679648511274
 created: 1676816641536
 ---
 - svm.py : 
@@ -11,15 +11,11 @@ created: 1676816641536
         - ## $\frac{value-min}{max-min}$
         - ## $\frac{value-\mu}{\sigma}$
 
-    - GridSearchCV results (on another script ...)
-
-    - For our use case, we are building an SVM, so what is the utility of the Cross Validation ? (given that, as far as I know, it is used to compare different models and then choose the best performing model to train it on the whole train dataset)  
+    - GridSearchCV results : https://www.kaggle.com/code/haytamel/master-thesis/notebook
 
     - My workflow currently : 
         - I am working with only **one** hyperspectral image.
-        - I train the model on % of the image's pixel.
-        - I test the SVM on the whole image's pixels.
+        - I train the model on 5% of the image's pixel.
+        - I test the SVM on all the pixels of the image.
         
-    - Is Few-shot learning ok for our algorithm ? (15% of original df)
-
-    - Value of gamma ...
+    - One-shot / Few-shot learning ???
