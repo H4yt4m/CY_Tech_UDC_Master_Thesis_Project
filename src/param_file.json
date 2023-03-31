@@ -1,6 +1,7 @@
 {
     "lattice_size" : 32,
-    "max_iterations" : 100000,
+    "max_iterations" : 1000000,
     "J" : 1,
-    "beta" : 0.04
+    "beta" : 0.04,
+    "seed" : 55
 }
