@@ -38,6 +38,10 @@ def extract_pixels_one_vs_all_classes(X, y, class_number):
     df.to_csv('Dataset.csv')
     return df, np.reshape(temp, (145,145))
 
+def normalize_data(data):
+    # todo
+    return normalized_data
+
 def split_into_train_test(df, test_percentage):
     x = df[df['class'] != 0]
     X = x.iloc[:, :-1].values
@@ -52,10 +56,6 @@ def plot_image(y, fig_name):
     plt.axis('off')
     plt.savefig(fig_name)
     plt.show()
-    
-def normalize_data(data):
-    # todo
-    return normalized_data
 
 def get_probabilities(dataframe, model):
     probabilities=[]
@@ -76,13 +76,16 @@ def main():
     start = time.time()
     
     X, y = read_files('./Indian_pines_corrected.mat', './Indian_pines_gt.mat')
+    
+    # One-vs-All classification
     df, y = extract_pixels_one_vs_all_classes(X, y, 11)
     
     X_train, X_test, y_train, y_test = split_into_train_test(df, 0.95)
     
-    # Comment one of the two different SVM implementations, depending on the choice
+##### Comment one of the two different SVM implementations ###########################
     
-#     # SVM with GridSearchCV ##########################################################
+# ##### SVM with GridSearchCV ########################################################
+
 #     param_grid = {'C': [0.1, 10, 100], 
 #                   'cache_size' : [1*1024, 10*1024, 100*1024],
 #                   'kernel': ['rbf', 'poly', 'sigmoid'],
@@ -96,21 +99,28 @@ def main():
 
 #     grid_predictions = svm.predict(X_test)
 #     print(classification_report(y_test, grid_predictions))
-#     #################################################################################
+
+# ####################################################################################
     
-    # Basic SVM #####################################################################
+
+##### Basic SVM ######################################################################
+    
     svm =  SVC(C=100, cache_size=1024, kernel='poly', probability=True)
     svm.fit(X_train, y_train)
-    #################################################################################
+
+######################################################################################
     
-    # Prediction and visualization ##################################################
+##### Prediction and visualization ###################################################
+    
+    # Class probability for each pixel 
     probabilities = get_probabilities(df, svm)
     print(probabilities[0:3])
     
     print("\n Ground Truth : \n")
     plot_image(y, 'IP_GT.png')
     visualise_prediction(df, svm)
-    #################################################################################
+    
+######################################################################################
     
     end = time.time()
     print("The elapsed wall time in seconds is: {}s".format(end - start))
