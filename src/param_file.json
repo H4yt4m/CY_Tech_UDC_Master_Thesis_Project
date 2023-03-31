@@ -1,0 +1,6 @@
+{
+    "lattice_size" : 32,
+    "max_iterations" : 100000,
+    "J" : 1,
+    "beta" : 0.04
+}

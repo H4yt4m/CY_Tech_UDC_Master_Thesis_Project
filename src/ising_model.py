@@ -12,6 +12,17 @@ import json
 import math
 import matplotlib.animation as animation
 
+def parse_arguments():
+    parser = argparse.ArgumentParser(description='Get experiment values from parameters file.')
+    if sys.argv[1] == "--generate" :
+        parser.add_argument('--generate', type=str, help='Add the parameters file to generate the lattice')
+        args = parser.parse_args()
+        parameters_file_path = json.load(open(args.generate))
+        return parameters_file_path   
+    # elif sys.argv[1] == some other mode ?
+    else :
+        print("\nMode not recognized.")
+
 def initialise_config(lattice_size):
     return 2*np.random.randint(2, size=(lattice_size,lattice_size))-1
 
@@ -65,7 +76,7 @@ def update(nb_candidate_pixels_per_iteration):
         candidate_config[spin_x, spin_y] *= -1
 
         # Calculate energy change between the two configs
-        delta_hamiltonians = 0
+        delta_hamiltonians = 0 # ??
         delta_hamiltonians = calculate_hamiltonian(candidate_config, lattice_size, beta) - calculate_hamiltonian(config, lattice_size, beta) 
 
         # Test whether we accept the flip or not
@@ -85,18 +96,26 @@ def animate(i):
     return im,
 
 
-# Parameters
-lattice_size = 32
-max_iterations = 100000
-J = 1
-beta = 0.04
+# Parse experiment parameters
+try:
+    args = parse_arguments()
+    lattice_size = args.get("lattice_size")
+    J = args.get("J")
+    max_iterations = args.get("max_iterations")
+    beta = args.get("beta")
 
-fig = plt.figure()
+except:
+    print("\nPlease choose an execution mode :\n -> For generating a new Ising model : --generate PARAMETERS_FILE_PATH \n -> For ???")
 
-config = initialise_config(lattice_size)
+try:
+    fig = plt.figure()
 
-im = plt.imshow(config, vmin=0, vmax=1)
+    config = initialise_config(lattice_size)
 
-anim = animation.FuncAnimation(fig, animate, frames=60, interval=1)
+    im = plt.imshow(config, vmin=0, vmax=1)
 
-plt.show()
+    anim = animation.FuncAnimation(fig, animate, frames=60, interval=1)
+
+    plt.show()
+except:
+    print("\nError visualizing Ising model.")
