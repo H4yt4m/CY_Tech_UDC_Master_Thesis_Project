@@ -87,7 +87,6 @@ def main():
 # ##### SVM with GridSearchCV ########################################################
 
 #     param_grid = {'C': [0.1, 10, 100], 
-#                   'cache_size' : [1*1024, 10*1024, 100*1024],
 #                   'kernel': ['rbf', 'poly', 'sigmoid'],
 #                   'probability' : [True]
 #              } 
