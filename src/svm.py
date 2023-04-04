@@ -80,8 +80,8 @@ def main():
     # One-vs-All classification
     df, y = extract_pixels_one_vs_all_classes(X, y, 11)
     
-    X_train, X_test, y_train, y_test = split_into_train_test(df, 0.95)
-    
+    X_train, X_test, y_train, y_test = split_into_train_test(df, 0.75)
+
 ##### Comment one of the two different SVM implementations ###########################
     
 # ##### SVM with GridSearchCV ########################################################
@@ -113,6 +113,8 @@ def main():
     
     # Class probability for each pixel 
     probabilities = get_probabilities(df, svm)
+    ret = np.savetxt('probabilities.txt', probabilities, delimiter=",")
+    
     print(probabilities[0:3])
     
     print("\n Ground Truth : \n")
