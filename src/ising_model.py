@@ -42,13 +42,13 @@ def calculate_hamiltonian(lattice, lattice_size, beta):
     coupling_term = 0
 
     # Todo : Replace by pixels probabilities from SVM
-    pixel_proba = 0.99
+    probabilities1 = np.loadtxt("probabilities.txt", dtype=float, delimiter=" ")
 
     # Energy from the total magnetic field present
     for i in range(lattice_size):
         for j in range(lattice_size):
             # get one spin at a time from all spins in the lattice
-            external_field_term += -calculate_local_energy(pixel_proba) * lattice[i, j]
+            external_field_term += -calculate_local_energy(probabilities1[i*lattice_size+j][0]+0.0000001) * lattice[i, j]
 
     # Energy from the neighbors
     for i in range(1, lattice_size-1):
