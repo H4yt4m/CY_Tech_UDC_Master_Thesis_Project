@@ -12,6 +12,8 @@ import json
 import math
 import matplotlib.animation as animation
 import copy
+from functools import partial
+
 
 # Parse arguments
 def parse_arguments():
@@ -26,7 +28,7 @@ def parse_arguments():
         print("\nMode not recognized.")
 
 def initialise_config(lattice_size, probabilities):
-    # Option 1 :Random initialisation
+    # # Option 1 :Random initialisation
     # return 2*np.random.randint(2, size=(lattice_size,lattice_size))-1
     
     # Option 2 : Initialisation based on threshholding from the prbabilities
@@ -75,9 +77,10 @@ def state_transition_probability(delta_hamiltonians, beta):
     return np.exp(-beta * delta_hamiltonians)
 
 # Simulation function
-def simulate(nb_candidate_pixels_per_iteration):
+def simulate(i, nb_candidate_pixels_per_iteration):
     global config, probabilities
     lattice_size = len(config[0])
+    flipped = False
 
     for _ in range(nb_candidate_pixels_per_iteration):
         # Pick a random spin
@@ -89,22 +92,20 @@ def simulate(nb_candidate_pixels_per_iteration):
         candidate_config[spin_x, spin_y] *= -1
 
         # Calculate energy change between the two configs
-        delta_hamiltonians = calculate_hamiltonian(candidate_config, lattice_size, beta, probabilities) -\
-            calculate_hamiltonian(config, lattice_size, beta, probabilities) 
+        delta_hamiltonians = (calculate_hamiltonian(candidate_config, lattice_size, beta, probabilities) -
+            calculate_hamiltonian(config, lattice_size, beta, probabilities))
 
         # Test whether we accept the flip or not
-        if np.random.randint(0, 1) < state_transition_probability(delta_hamiltonians, beta):
-            config[spin_x, spin_y] *= -1    
-            print(delta_hamiltonians)
+        if delta_hamiltonians <= 0 or np.random.uniform(0.0, 1.0) < state_transition_probability(delta_hamiltonians, beta):
+            config[spin_x, spin_y] *= -1 
+    #         flipped = True
 
-# Visualisation
-def init():
+    # if flipped == True :
+    #     print("Flipped on iteration {} witn difference {}".format(i, delta_hamiltonians))
+    # elif flipped == False : 
+    #     print("Didn't flip on iteration {}".format(i))
     im.set_data(config)
-    return im,
 
-def animate(i):
-    simulate(1)
-    im.set_data(config)
     return im,
 
 try:
@@ -115,21 +116,36 @@ try:
     max_iterations = args.get("max_iterations")
     beta = args.get("beta")
     s = args.get("seed")
-
+    nb_candidate_pixels_per_iteration = args.get("nb_candidate_pixels_per_iteration")
+    visualize_plot_dynamically = args.get("visualize_plot_dynamically")
+    save_mp4_file = args.get("save_mp4_file")
+    
     np.random.seed(s)
 
 except:
     print("\nPlease choose an execution mode :\n -> For generating a new Ising model : --generate PARAMETERS_FILE_PATH \n -> For ???")
 
-try:
-    # Visualize lattice
-    fig = plt.figure()
-    probabilities = np.loadtxt("probabilities.txt", dtype=float, delimiter=" ")
-    config = initialise_config(lattice_size, probabilities)
-    im = plt.imshow(config)
-    anim = animation.FuncAnimation(fig, animate, frames=10, interval=0, blit=True)
-    plt.show()
-    # anim.save('ising_model.gif')
+# Initiate matplotlib elements
+fig = plt.figure()
+probabilities = np.loadtxt("probabilities.txt", dtype=float, delimiter=" ")
+config = initialise_config(lattice_size, probabilities)
+im = plt.imshow(config)
 
-except:
-    print("\nError visualizing Ising model.")
+anim = animation.FuncAnimation(
+    fig,
+    partial(simulate, nb_candidate_pixels_per_iteration = nb_candidate_pixels_per_iteration),
+    frames=max_iterations,
+    interval=1,
+    blit=True,
+    repeat=False
+)
+
+# Visualize lattice interactively
+if visualize_plot_dynamically == True :
+    plt.show()
+
+# Save animation as mp4 file
+if save_mp4_file == True :
+    f = r"./ising_model.mp4" 
+    writervideo = animation.FFMpegWriter(fps=60) 
+    anim.save(f, writer=writervideo)
