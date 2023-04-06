@@ -1,10 +1,8 @@
 {
-    "lattice_size" : 32,
-    "max_iterations" : 1000000000,
-    "J" : 1,
+    "lattice_size" : 145,
+    "max_iterations" : 100,
     "beta" : 0.04,
     "seed" : 55,
-    "nb_candidate_pixels_per_iteration" : 1,
-    "visualize_plot_dynamically" : true,
-    "save_mp4_file" : false
+    "nb_candidate_pixels" : 1,
+    "visualize_or_save" : "visualize"
 }
