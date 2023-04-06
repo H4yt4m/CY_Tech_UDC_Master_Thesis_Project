@@ -28,7 +28,7 @@ def parse_arguments():
         print("\nMode not recognized.")
 
 def initialise_config(lattice_size, probabilities):
-    # # Option 1 :Random initialisation
+    # # Option 1 : Random initialisation
     # return 2*np.random.randint(2, size=(lattice_size,lattice_size))-1
     
     # Option 2 : Initialisation based on threshholding from the prbabilities
@@ -45,12 +45,13 @@ def get_neighbours(config, x, y):
 def calculate_local_energy(pixel_proba):
     return -np.log((1/pixel_proba)-1)/4
 
-def calculate_hamiltonian(lattice, lattice_size, beta, probabilities):
+def calculate_hamiltonian(lattice, beta, probabilities):
     # This is the hamiltonian of a GIVEN state
     # This is NOT the change of energy ! 
 
     external_field_term = 0
     coupling_term = 0
+    lattice_size = len(lattice[0])
 
     # Energy from the total magnetic field present
     for i in range(lattice_size):
@@ -76,6 +77,28 @@ def calculate_hamiltonian(lattice, lattice_size, beta, probabilities):
 def state_transition_probability(delta_hamiltonians, beta):
     return np.exp(-beta * delta_hamiltonians)
 
+# To verify
+def get_pixel_ising_proba(list_lowest_energy_configurations, pixel_x, pixel_y):
+    canonical_partition = 0
+    K = len(list_lowest_energy_configurations)
+
+    # Normalization constant
+    for eps in range (K+1):
+        config = list_lowest_energy_configurations[eps]
+        canonical_partition += np.exp(-calculate_hamiltonian(config, beta, probabilities))
+
+    pixel_proba = 1/canonical_partition
+
+    # Pixel probability
+    for k in range (K+1):
+        config = list_lowest_energy_configurations[k]
+        spin = config[pixel_x][pixel_y]
+        temp += (1 if spin==1 else 0)/np.exp(calculate_hamiltonian(list_lowest_energy_configurations[k], beta, probabilities))
+
+    pixel_proba = temp / canonical_partition
+
+    return pixel_proba
+
 # Simulation function
 def simulate(i, nb_candidate_pixels_per_iteration):
     global config, probabilities
@@ -92,18 +115,13 @@ def simulate(i, nb_candidate_pixels_per_iteration):
         candidate_config[spin_x, spin_y] *= -1
 
         # Calculate energy change between the two configs
-        delta_hamiltonians = (calculate_hamiltonian(candidate_config, lattice_size, beta, probabilities) -
-            calculate_hamiltonian(config, lattice_size, beta, probabilities))
+        delta_hamiltonians = (calculate_hamiltonian(candidate_config, beta, probabilities) -
+            calculate_hamiltonian(config, beta, probabilities))
 
         # Test whether we accept the flip or not
         if delta_hamiltonians <= 0 or np.random.uniform(0.0, 1.0) < state_transition_probability(delta_hamiltonians, beta):
             config[spin_x, spin_y] *= -1 
-    #         flipped = True
 
-    # if flipped == True :
-    #     print("Flipped on iteration {} witn difference {}".format(i, delta_hamiltonians))
-    # elif flipped == False : 
-    #     print("Didn't flip on iteration {}".format(i))
     im.set_data(config)
 
     return im,
@@ -117,8 +135,7 @@ try:
     beta = args.get("beta")
     s = args.get("seed")
     nb_candidate_pixels_per_iteration = args.get("nb_candidate_pixels_per_iteration")
-    visualize_plot_dynamically = args.get("visualize_plot_dynamically")
-    save_mp4_file = args.get("save_mp4_file")
+    visualize_or_save = args.get("visualize_or_save")
     
     np.random.seed(s)
 
@@ -141,11 +158,17 @@ anim = animation.FuncAnimation(
 )
 
 # Visualize lattice interactively
-if visualize_plot_dynamically == True :
+if visualize_or_save == "visualize" :
     plt.show()
 
 # Save animation as mp4 file
-if save_mp4_file == True :
-    f = r"./ising_model.mp4" 
-    writervideo = animation.FFMpegWriter(fps=60) 
-    anim.save(f, writer=writervideo)
+elif visualize_or_save == "save" :
+    # Format : gif
+    f = r"./ising_model.gif" 
+    writergif = animation.PillowWriter(fps=60) 
+    anim.save(f, writer=writergif)
+    
+    # # Format : mp4
+    # f = r"./ising_model.mp4" 
+    # writervideo = animation.FFMpegWriter(fps=60) 
+    # anim.save(f, writer=writervideo)
