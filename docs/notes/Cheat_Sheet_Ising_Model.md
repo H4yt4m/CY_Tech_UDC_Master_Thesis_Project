@@ -2,13 +2,13 @@
 id: 7kax0bbzlofb4xkw773kl8x
 title: Cheat_Sheet_Ising_Model
 desc: ''
-updated: 1680254785034
+updated: 1680854738169
 created: 1679303100940
 ---
 
 - Boltzmann distribution : 
     - Probabilities from energies...
-    -  $P(C_i) = \frac {e^{\frac{-E_i}{K_B T}}}{\sum_i {e^{\frac{-E_i}{K_B T}}}}$
+    -  $P(S_i) = \frac {e^{\frac{-E_i}{K_B T}}}{\sum_i {e^{\frac{-E_i}{K_B T}}}}$
     
 - Hamiltonian : 
     - Function that maps a string ({-1, +1}) to a real numbers.
@@ -35,3 +35,5 @@ created: 1679303100940
 
 - Chosen pixel connectivity : 
     - 4-connectivity : Both pixels are 4-adjacent with each other (ie. q in the set of his h/v neighbors N4(p))
+
+- Metropolis-Hasting algorithm...

@@ -2,7 +2,7 @@
 id: 8xmaqjhg745j8yq9z7ekew9
 title: Cheat_Sheet_Markov_Random_Field
 desc: ''
-updated: 1679328619007
+updated: 1680856850862
 created: 1679303558361
 ---
 - Also known as Markov Network.
@@ -23,7 +23,7 @@ created: 1679303558361
     - Smoothness term : 
         - Derived from prior knowledge about plausible solutions.
     - It is equal to the negative log posterior, up to a constant.
-- The posterior of a given RV $U_i$, with respect to all other RV in the graph, is equal to the posterior with respect to RV in the Markov Blanket of node i (ie. neighbors).
+- The posterior of a given random variable $U_i$, with respect to all other random variables in the graph, is equal to the posterior with respect to random variables in the Markov Blanket of node i (ie. neighbors).
     - Thus, information **propagates** through the graph, thanks to local connections.
 - Conditional independence : ${\displaystyle P(A\mid B,C)=P(A\mid C)}$ ...
 - Maximal clique : Maximal fully connected subset of nodes.

@@ -2,31 +2,15 @@
 id: wxca6y2tvdtzc9vti55idx3
 title: Questions
 desc: ''
-updated: 1680268410226
+updated: 1680855470504
 created: 1676816641536
 ---
-- svm.py : 
-
-    - Training size percentage ?
-
-    - Which normalization for each band in the hyperspectral image ? 
-        - ### $\frac{value-min}{max-min}$
-        - ### $\frac{value-\mu}{\sigma}$
-
-    - GridSearchCV results : https://www.kaggle.com/code/haytamel/master-thesis/notebook
-
-    - My workflow currently : 
-        - I am working with only **one** hyperspectral image.
-        - I train the model on 5% of the image's pixel.
-        - I test the SVM on all the pixels of the image.
-        
-    - One-shot / Few-shot learning ???
 
 - ising_model.py : 
+    - Issue with Cesga's FinisTerrae3 : could not run the visualization for the lattice... Try to change from matplotlib for high performance visualization like vispy ? or just store each lattice in every step in a numpy array and export it without visualization ?
+    - In the code : # To verify
+    - For 2.9 (function get_pixel_ising_proba): 
+        - How are local energies defined for the hamiltonian ? like in 2.4 ?
+    - Which D-Wave function for chimera embedding ?
 
-    - Slow animation...
-    - Code line 91 Problem (Test whether we accept the flip or not) ...
-    - Slide 15 : Calculate local energy 
-        - ### $h_i = \frac{\log(\frac{1}{P_i(C)}-1)}{4}$ 
-        - For each pixel, take into account only the probability of being in class C (and not the probability of being in ¬C) ?
-        - Log(0) possible ?
+- Should I try to implement the one vs one version as well ?
