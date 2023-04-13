@@ -148,10 +148,9 @@ def pixel_proba_post_ising(list_lowest_energy_configurations, pixel_x, pixel_y):
     return pixel_proba
 
 
-# Simulation function
-def update_figure(i, nb_candidate_pixels, probabilities, beta):
+# To verify
+def generate_frames(nb_candidate_pixels, probabilities, beta, config):
     lattice_size = len(config[0])
-    flipped = False
 
     for _ in range(nb_candidate_pixels):
         # Pick a random spin
@@ -171,16 +170,13 @@ def update_figure(i, nb_candidate_pixels, probabilities, beta):
         if delta_hamiltonians <= 0 or np.random.uniform(
             0.0, 1.0
         ) < state_transition_probability(delta_hamiltonians, beta):
-            config[spin_x, spin_y] *= -1
+            return candidate_config
 
-    im.set_data(config)
-
-    return (im,)
+    return config
 
 
 def main():
-    # Configuration and visualization image instances should be accessible by update_fig
-    global config, im
+    frames_list = []
 
     try:
         # Parse experiment parameters
@@ -200,26 +196,36 @@ def main():
         )
 
     # Initiate matplotlib elements
-    fig = plt.figure()
+    fig, ax = plt.subplots()
     probabilities = np.loadtxt("probabilities.txt", dtype=float, delimiter=" ")
-    config = initialise_config(lattice_size, probabilities)
-    im = plt.imshow(config)
 
-    anim = animation.FuncAnimation(
+    frames_list.append(initialise_config(lattice_size, probabilities))
+
+    # Generate frames
+    start = time.time()
+    for i in range(max_iterations - 1):
+        frames_list.append(
+            generate_frames(nb_candidate_pixels, probabilities, beta, frames_list[i])
+        )
+    elapsed = time.time() - start
+
+    ims = []
+
+    # Initialise the figure
+    ax.imshow(frames_list[0])
+
+    # Generate the animations for the figure
+    for i in range(1, max_iterations):
+        im = ax.imshow(frames_list[i], animated=True)
+        ims.append([im])
+
+    # Animate the figure
+    anim = animation.ArtistAnimation(
         fig,
-        partial(
-            update_figure,
-            nb_candidate_pixels=nb_candidate_pixels,
-            probabilities=probabilities,
-            beta=beta,
-        ),
-        frames=max_iterations,
+        ims,
         interval=1,
         blit=True,
-        repeat=False,
     )
-
-    start = time.time()
 
     # Visualize lattice interactively
     if visualize_or_save == "visualize":
@@ -233,13 +239,13 @@ def main():
         writergif = animation.PillowWriter(fps=60)
         anim.save(f, writer=writergif)
 
-        elapsed = time.time() - start
+        # os.system(
+        #     'ffmpeg -y -i ising_model.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" ising_model.mp4'
+        # )
 
-        os.system(
-            'ffmpeg -y -i ising_model.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" ising_model.mp4'
-        )
-
-    print("\n\n Elapsed wall-clock Time is {}s\n\n".format(elapsed))
+    print(
+        "\n\n Elapsed wall-clock time to generate the frames is {}s\n\n".format(elapsed)
+    )
 
     return 0
 
