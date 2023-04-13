@@ -2,7 +2,7 @@
 id: kium9oyomtdzrf5n4z64kce
 title: References
 desc: ''
-updated: 1680854116886
+updated: 1681417103712
 created: 1676808458265
 ---
 
@@ -58,7 +58,11 @@ created: 1676808458265
 
 [Ising Model](https://rajeshrinet.github.io/blog/2014/ising-model/)
 
+[Ising](https://learn.microsoft.com/fr-fr/azure/quantum/optimization-concepts-ising-model-for-optimization)
+
 ### **MRF**
+
+[MRF](https://www.ime.usp.br/~ddm/courses/mac6916/markovnetworks/#a-few-more-concepts-from-graph-theory)
 
 [Markov chains and Markov Random Fields (MRFs)](https://www.cs.umd.edu/~djacobs/CMSC733/MarkovModelsMRFs.pdf)
 
@@ -75,6 +79,8 @@ created: 1676808458265
 
 [Machine Learning Catalog](https://machinelearningcatalogue.com/about.html)
 
+[NN Cheat Sheets](https://becominghuman.ai/cheat-sheets-for-ai-neural-networks-machine-learning-deep-learning-big-data-science-pdf-f22dc900d2d7)
+
 ### **D-Wave**
 
 [D-Wave : Chimera embedding](https://github.com/dwavesystems/chimera-embedding)
@@ -83,11 +89,15 @@ created: 1676808458265
 
 [D-Wave : What is Quantum Annealing ?](https://docs.dwavesys.com/docs/latest/c_gs_2.html)
 
+[dwave.embedding.chimera.find_grid_embedding](https://sdk-docs.readthedocs.io/en/latest/docs_system/reference/generated/dwave.embedding.chimera.find_grid_embedding.html)
+
 ### **Quantum Computing**
 
 [Gabriele's Lecture](https://www.gabriele-cavallaro.com/teaching/course-artificial-intelligence-earth-observation-high-performance-computing-quantum-computing-2021)
 
 [Piotr's Lecture with Quantum AI Foundation](https://youtu.be/hCwrGXut7_g?t=3113)
+
+[D-wave quantum computing Ising model: A case study for the forecasting of heat waves](https://ieeexplore.ieee.org/document/7338651)
 
 ### **Image Processing**
 [Relationships between pixels(Neighbours and Connectivity)](https://samirkhanal35.medium.com/relationships-between-pixels-neighbours-and-connectivity-d38e473cd994)
@@ -100,6 +110,13 @@ created: 1676808458265
 
 ### **Visualization**
 [Matplotlib animations](https://holypython.com/how-to-save-matplotlib-animations-the-ultimate-guide/)
+
+[matplotlib backends](https://matplotlib.org/stable/users/explain/backends.html)
+
+[animation](https://climate-cms.org/posts/2019-09-03-python-animation.html)
+
+### **SVM**
+[Math behind SVM](https://www.youtube.com/watch?v=05VABNfa1ds)
 
 # Other links
 

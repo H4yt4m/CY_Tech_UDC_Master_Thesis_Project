@@ -2,7 +2,7 @@
 id: rxfpt42njagrwsdl7pxu2zp
 title: Todo
 desc: ''
-updated: 1680855404572
+updated: 1681421703854
 created: 1676806648487
 ---
 # Advises :
@@ -16,16 +16,11 @@ created: 1676806648487
 
 # Tasks :
 
-### Coding
+  - Continue reading about QSVM (Gabriele's paper, lecture and QSVM notebooks)
   - Finish the remaining parts of the algorithm in the slides (Chimera etc)
-  - See Gabriele's new paper on overfitting in mail.
-  - Understand Quantum SVM : (Gabriele's paper, lecture and QSVM notebooks)
-
-### Thesis
-  - Start writing thesis and slides
-  - Make a visualization of the whole workflow of the algorithm with details about every function.
+  - Write thesis and slides
 
 # Later : 
-  - Adapt parameters in FinisTerrae script job.sh
+  - Make a visualization of the whole workflow of the algorithm with details about every function.
   - Seach for other hyperspectral images
   - Comparing the results of our "future" algorithm to existing parallel and/or GPU optimized implementations ?
