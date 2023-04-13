@@ -146,7 +146,7 @@ def main():
     ######################################################################################
 
     end = time.time()
-    print("The elapsed wall time in seconds is: {}s".format(end - start))
+    print("The elapsed wall-clock time for the svm is: {}s".format(end - start))
 
     return 0
 
