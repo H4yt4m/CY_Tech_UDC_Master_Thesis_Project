@@ -148,7 +148,6 @@ def pixel_proba_post_ising(list_lowest_energy_configurations, pixel_x, pixel_y):
     return pixel_proba
 
 
-# To verify
 def generate_frames(nb_candidate_pixels, probabilities, beta, config):
     lattice_size = len(config[0])
 
@@ -170,7 +169,7 @@ def generate_frames(nb_candidate_pixels, probabilities, beta, config):
         if delta_hamiltonians <= 0 or np.random.uniform(
             0.0, 1.0
         ) < state_transition_probability(delta_hamiltonians, beta):
-            return candidate_config
+            config = copy.deepcopy(candidate_config)
 
     return config
 
@@ -204,6 +203,8 @@ def main():
     # Generate frames
     start = time.time()
     for i in range(max_iterations - 1):
+        # At each iteration i, we generate the next state based on the state
+        # at step i, ie. the saved state in frames_list[i]
         frames_list.append(
             generate_frames(nb_candidate_pixels, probabilities, beta, frames_list[i])
         )
@@ -220,12 +221,7 @@ def main():
         ims.append([im])
 
     # Animate the figure
-    anim = animation.ArtistAnimation(
-        fig,
-        ims,
-        interval=1,
-        blit=True,
-    )
+    anim = animation.ArtistAnimation(fig, ims, interval=1, blit=True, repeat_delay=1000)
 
     # Visualize lattice interactively
     if visualize_or_save == "visualize":
@@ -239,9 +235,13 @@ def main():
         writergif = animation.PillowWriter(fps=60)
         anim.save(f, writer=writergif)
 
+        # # Format : mp4 (Option 1 : after generating a gif)
         # os.system(
         #     'ffmpeg -y -i ising_model.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" ising_model.mp4'
         # )
+
+        # # Format : mp4 (Option 2 : without generating a gif)
+        # anim.save("ising_model.mp4")
 
     print(
         "\n\n Elapsed wall-clock time to generate the frames is {}s\n\n".format(elapsed)
