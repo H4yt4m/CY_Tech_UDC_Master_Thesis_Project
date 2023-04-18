@@ -2,7 +2,7 @@
 id: rxfpt42njagrwsdl7pxu2zp
 title: Todo
 desc: ''
-updated: 1681421703854
+updated: 1681849854413
 created: 1676806648487
 ---
 # Advises :
@@ -15,6 +15,9 @@ created: 1676806648487
 - Mermaid markdown for flowcharts.
 
 # Tasks :
+
+  - IMPLEMENT THE CHIMERA EMBEDDING ALGORITHM.
+  - RUN THE SDK LOCALLY.
 
   - Continue reading about QSVM (Gabriele's paper, lecture and QSVM notebooks)
   - Finish the remaining parts of the algorithm in the slides (Chimera etc)
