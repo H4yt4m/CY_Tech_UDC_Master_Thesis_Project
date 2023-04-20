@@ -1,8 +1,9 @@
 {
     "lattice_size": 145,
     "max_iterations": 10000,
-    "beta": 0.04,
-    "temperature": 1.0,
+    "beta": 0.5,
+    "temperature_min": 1.0,
+    "temperature_max": 1.0,
     "seed": 55,
-    "candidate_pixels_per_frame": 1
+    "candidate_pixels_per_frame": 500
 }

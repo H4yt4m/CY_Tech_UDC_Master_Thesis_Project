@@ -125,27 +125,29 @@ def state_transition_probability(delta_hamiltonians, temperature):
     return np.exp(-delta_hamiltonians / temperature)
 
 
-# # To verify
-# def pixel_proba_post_ising(list_lowest_energy_configurations, pixel_x, pixel_y):
-#     K = len(list_lowest_energy_configurations)
+# @njit
+# def pixel_proba_post_ising(array_lowest_energy_configurations, pixel_x, pixel_y):
+#     """
+#     Calculate the new class probability for each pixel, after the quantum annealing
+#     """
 
-#     # Canonical partition, ie. normalization constant
+#     K = len(array_lowest_energy_configurations)
+
 #     canonical_partition = 0
-#     for eps in range(K + 1):
-#         lattice = list_lowest_energy_configurations[eps]
+
+#     for k in range(K + 1):
+#         lattice = array_lowest_energy_configurations[k]
+
+#         # Canonical partition, ie. normalization constant
 #         canonical_partition += np.exp(-hamiltonian(lattice, beta, probabilities))
 
-#     # Pixel probability
-#     for k in range(K + 1):
-#         lattice = list_lowest_energy_configurations[k]
+#         # Pixel probability
 #         spin = lattice[pixel_x][pixel_y]
 #         acc += (1 if spin == 1 else 0) / np.exp(
-#             hamiltonian(list_lowest_energy_configurations[k], beta, probabilities)
+#             hamiltonian(array_lowest_energy_configurations[k], beta, probabilities)
 #         )
 
-#     pixel_proba = acc / canonical_partition
-
-#     return pixel_proba
+#     return acc / canonical_partition
 
 
 @njit
@@ -192,7 +194,13 @@ def main():
         lattice_size = args.get("lattice_size")
         max_iterations = args.get("max_iterations")
         beta = args.get("beta")
-        temperature = args.get("temperature")
+        temperature_min = args.get("temperature_min")
+        temperature_max = args.get("temperature_max")
+        temperature = (
+            temperature_max
+            if temperature_min == temperature_max
+            else np.linspace(temperature_max, temperature_min, max_iterations)
+        )
         s = args.get("seed")
         candidate_pixels_per_frame = args.get("candidate_pixels_per_frame")
 
@@ -218,25 +226,26 @@ def main():
         frames_list[i + 1] = generate_frames(
             candidate_pixels_per_frame,
             probabilities,
-            temperature,
+            temperature if type(temperature) == float else temperature[i],
             beta,
             frames_list[i],
         )
 
     # Save the frames in GIF format
+    filename = "run99.gif"
     gif = [
         Image.fromarray(np.uint8(f)).convert("RGB").resize((600, 600))
         for f in frames_list
     ]
 
-    gif[0].save(
-        "run99.gif", save_all=True, optimize=False, append_images=gif[1:], loop=0
-    )
+    gif[0].save(filename, save_all=True, optimize=False, append_images=gif[1:], loop=0)
 
     elapsed = time.time() - start
 
     print(
-        "\n\n Elapsed wall-clock time to generate the frames is {}s\n\n".format(elapsed)
+        "\n\n Elapsed wall-clock time to generate the file {} is {}s\n\n".format(
+            filename, elapsed
+        )
     )
 
     return 0
