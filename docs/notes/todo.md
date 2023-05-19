@@ -2,7 +2,7 @@
 id: rxfpt42njagrwsdl7pxu2zp
 title: Todo
 desc: ''
-updated: 1681849854413
+updated: 1684479671382
 created: 1676806648487
 ---
 # Advises :
@@ -13,17 +13,23 @@ created: 1676806648487
 - Add visualizations and flow diagrams for functions.
 - Remember the triangle : Mathematics, Code, Visualization.
 - Mermaid markdown for flowcharts.
+- Marp for slides.
+- Create a story around the presentation and thesis document
 
 # Tasks :
 
-  - IMPLEMENT THE CHIMERA EMBEDDING ALGORITHM.
-  - RUN THE SDK LOCALLY.
+  - Search for another hyperspectral image : Remote sensing, Healthcate, James webb ?
+  - Implement my own embedding algorithm
+  - remove lattice items on hamiltonian...
+  - Finish the remaining parts of the algorithm in the slides
 
-  - Continue reading about QSVM (Gabriele's paper, lecture and QSVM notebooks)
-  - Finish the remaining parts of the algorithm in the slides (Chimera etc)
-  - Write thesis and slides
 
 # Later : 
+
+  - BQM vs CQM...
+  - Separate Generation and simulation in SEPARATE FILES
+  - Continue reading about QSVM (Gabriele's paper, lecture and QSVM notebooks)
+  - View Piotr's Slides from summer school in iceland...
   - Make a visualization of the whole workflow of the algorithm with details about every function.
-  - Seach for other hyperspectral images
+  - Search for other hyperspectral images
   - Comparing the results of our "future" algorithm to existing parallel and/or GPU optimized implementations ?

@@ -2,7 +2,7 @@
 id: kium9oyomtdzrf5n4z64kce
 title: References
 desc: ''
-updated: 1681417103712
+updated: 1683896844656
 created: 1676808458265
 ---
 
@@ -91,11 +91,19 @@ created: 1676808458265
 
 [dwave.embedding.chimera.find_grid_embedding](https://sdk-docs.readthedocs.io/en/latest/docs_system/reference/generated/dwave.embedding.chimera.find_grid_embedding.html)
 
+[D-Wave examples](https://github.com/dwave-examples)
+
+[D-Wave youtube : BQM and CQM Conf](https://www.youtube.com/watch?v=jTDnGox0c9Y)
+
+[D-Wave Early quantum projects](https://www.dwavesys.com/learn/featured-applications/?industry=&query=&thirdParty=-1#resource-list)
+
 ### **Quantum Computing**
 
 [Gabriele's Lecture](https://www.gabriele-cavallaro.com/teaching/course-artificial-intelligence-earth-observation-high-performance-computing-quantum-computing-2021)
 
 [Piotr's Lecture with Quantum AI Foundation](https://youtu.be/hCwrGXut7_g?t=3113)
+
+[Piotr's quantum slides](https://box.cyfronet.pl/s/BADtm5XZgqNCM46)
 
 [D-wave quantum computing Ising model: A case study for the forecasting of heat waves](https://ieeexplore.ieee.org/document/7338651)
 
@@ -137,3 +145,40 @@ created: 1676808458265
 [algorithmiq](https://algorithmiq.fi/team)
 
 [Sycl](https://www.khronos.org/files/sycl/sycl-12-reference-card.pdf)
+
+
+# To check :
+https://docs.ocean.dwavesys.com/en/stable/docs_dimod/reference/sampler_composites/samplers.html
+
+https://docs.ocean.dwavesys.com/en/stable/docs_dimod/reference/sampler_composites/generated/dimod.reference.samplers.SimulatedAnnealingSampler.sample.html#dimod.reference.samplers.SimulatedAnnealingSampler.sample
+
+https://docs.ocean.dwavesys.com/en/stable/docs_dimod/reference/sampler_composites/generated/dimod.reference.samplers.SimulatedAnnealingSampler.sample_ising.html#dimod.reference.samplers.SimulatedAnnealingSampler.sample_ising
+
+https://github.com/dwavesystems/dimod/blob/0.12.3/dimod/core/sampler.py#L239
+
+https://en.wikipedia.org/wiki/Simulated_annealing
+
+https://docs.ocean.dwavesys.com/en/stable/docs_dimod/reference/models.html#module-dimod.binary.binary_quadratic_model
+
+https://github.com/dwavesystems/dwave-scikit-learn-plugin
+
+https://docs.ocean.dwavesys.com/en/stable/docs_dimod/reference/sampler_composites/generated/dimod.reference.samplers.SimulatedAnnealingSampler.sample.html#dimod.reference.samplers.SimulatedAnnealingSampler.sample
+
+https://docs.ocean.dwavesys.com/projects/inspector/en/latest/
+
+https://dwavequantum.com/resources/publication/quantum-boltzmann-machine/
+
+[RBM for Generative AI](https://www.mygreatlearning.com/blog/understanding-boltzmann-machines/)
+
+https://www2.stat.duke.edu/~scs/Courses/Stat376/Papers/TemperAnneal/KirkpatrickAnnealScience1983.pdf
+
+https://mycolor.space/
+
+https://colorhunt.co/
+
+https://www.typewolf.com/
+
+https://www.iitis.pl/en/person/zmzaouali
+
+
+https://rpubs.com/jwarby2000/966413

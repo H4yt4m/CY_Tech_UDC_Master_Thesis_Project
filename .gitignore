@@ -8,4 +8,4 @@ dendron/
 .vscode
 files/
 src/draft.py
-src/thesis
+other_workspaces/

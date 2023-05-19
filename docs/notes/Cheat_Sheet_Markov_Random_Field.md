@@ -2,7 +2,7 @@
 id: 8xmaqjhg745j8yq9z7ekew9
 title: Cheat_Sheet_Markov_Random_Field
 desc: ''
-updated: 1680856850862
+updated: 1683897217248
 created: 1679303558361
 ---
 - Also known as Markov Network.
@@ -16,12 +16,7 @@ created: 1679303558361
     - $p(u) =(1/Z)*exp(−E(u, θ))$ **with :** $E(u, θ) = \sum_{c\in C }Ψ_c(ū_c,θ_c)$
     - Minimizing **E** is maximizing **p**
 - Partition function : $\sum_{u_1, .. , u_N}\prod_{c\in C}{exp(−Ψ_c(ū_c,θ_c))}$
-- Energy expression : $E(u) = E_{data}(u) + E_{smoothness}(u)$
-    - Data term : 
-        - Consistency of the model with the measurement data
-        - Penalizes discrepancy.
-    - Smoothness term : 
-        - Derived from prior knowledge about plausible solutions.
+
     - It is equal to the negative log posterior, up to a constant.
 - The posterior of a given random variable $U_i$, with respect to all other random variables in the graph, is equal to the posterior with respect to random variables in the Markov Blanket of node i (ie. neighbors).
     - Thus, information **propagates** through the graph, thanks to local connections.
