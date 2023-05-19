@@ -111,6 +111,7 @@ def hamiltonian(lattice, beta, probabilities):
             neighbors = pixel_neighbors(lattice, i, j)
 
             for k in range(len(neighbors)):
+                # Jij = 1 for all neighbors
                 neighbors_coupling += -beta * lattice[i, j] * neighbors[k]
 
     return external_field + neighbors_coupling
