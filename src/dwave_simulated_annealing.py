@@ -13,6 +13,7 @@ from numba import njit
 from PIL import Image
 
 from dwave.samplers import SimulatedAnnealingSampler
+from dwave.system import AutoEmbeddingComposite
 
 
 def plot_image(y, fig_name):
@@ -47,11 +48,9 @@ def hamiltonian(lattice_size, beta, probabilities):
 
     for i in range(lattice_size):
         for j in range(lattice_size):
-            spin = "S_{}_{}".format(str(i).zfill(3), str(j).zfill(3))
-
-            external_field[spin] = -local_energy(
-                probabilities[i * lattice_size + j][0] + 0.0000001
-            )
+            spin = i * lattice_size + j
+            
+            external_field[spin] = -local_energy(probabilities[spin][0] + 0.0000001)
 
             neighbors_indexes = [
                 [(i + 1) % lattice_size, j],
@@ -61,9 +60,8 @@ def hamiltonian(lattice_size, beta, probabilities):
             ]
 
             for k in range(len(neighbors_indexes)):
-                neighbor = "S_{}_{}".format(
-                    str(neighbors_indexes[k][0]).zfill(3),
-                    str(neighbors_indexes[k][1]).zfill(3),
+                neighbor = (
+                    neighbors_indexes[k][0] * lattice_size + neighbors_indexes[k][1]
                 )
                 neighbors_coupling[(spin, neighbor)] = -beta
 
@@ -96,7 +94,7 @@ def main():
 
     start = time.time()
 
-    sampler = SimulatedAnnealingSampler()
+    sampler = AutoEmbeddingComposite(SimulatedAnnealingSampler())
     sampleset = sampler.sample_ising(
         external_field, neighbors_coupling, num_reads=sampler_param["num_reads"]
     )
