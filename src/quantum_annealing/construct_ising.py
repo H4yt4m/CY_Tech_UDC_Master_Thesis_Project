@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-from PIL import Image
+
+# import matplotlib.image as mpimg
+# from PIL import Image
 from numba import njit
 
 
@@ -37,15 +38,27 @@ def hamiltonian(lattice_size, beta, probabilities):
 
     for i in range(lattice_size):
         for j in range(lattice_size):
-
             spin = i * lattice_size + j
             external_field[spin] = -local_energy(probabilities[spin][0] + 0.0000001)
 
+            # # cycling on lattice edge
+            # neighbors_indexes = [
+            #     [(i + 1) % lattice_size, j],
+            #     [(i - 1) % lattice_size, j],
+            #     [i, (j + 1) % lattice_size],
+            #     [i, (j - 1) % lattice_size],
+            # ]
+
+            # not cycling on lattice edge
             neighbors_indexes = [
-                [(i + 1) % lattice_size, j],
-                [(i - 1) % lattice_size, j],
-                [i, (j + 1) % lattice_size],
-                [i, (j - 1) % lattice_size],
+                elt
+                for elt in [
+                    [i + 1, j],
+                    [i - 1, j],
+                    [i, j + 1],
+                    [i, j - 1],
+                ]
+                if 0 <= elt[0] < lattice_size and 0 <= elt[1] < lattice_size
             ]
 
             for k in range(len(neighbors_indexes)):
