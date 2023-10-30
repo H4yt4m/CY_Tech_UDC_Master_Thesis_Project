@@ -7,3 +7,5 @@ pods/service-connections
 dendron/
 .vscode
 files/
+src/draft.py
+other_workspaces/
