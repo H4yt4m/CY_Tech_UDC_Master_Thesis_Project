@@ -1,19 +1,30 @@
 # Image Processing Using Quantum Annealing
 
-This is my master thesis' project. The main goal is to create an algorithm for image processing (classification, segmentation, etc), through the implementation of the Ising model, adapted for quantum annealing.
+This repository contains my final master thesis' project for my double degree High Performance Data Analytics & High Performance Computing @ CY Tech Engineering Graduate School & University of A Coruña.
 
-The experiment will be done on Advantage System JUPSI, an annealing quantum computer from D-Wave, hosted at Forschungszentrum Jülich.
+It was an opportunity for me to learn about the world of Hyperspectral imaging as well as Quantum Computing.
 
-How to setup Dendron for notes management :
+- Goal :
 
-    - Install the Dendron extension from VS Codium's extension store.
+  - Hyperspectral Image Segmentation using Quantum Annealing.
 
-    - Clone this repository.
+- Key concepts :
 
-    - Open the folder containing this project into VS Codium.
+  - Hyperspectral Imaging
+  - Markov Random Fields
+  - Ising Model
+  - Quantum Annealing
+  - D-Wave SDK
 
-    - Open Dendron's view by clicking on the related extension in the left side panel (If the icon is not appearent, ensure that Dendron is enabled in the current workspace from the extension's store).
+- Under the guidance of :
 
-    - In the top right hand side of the left column of Dendron's view, select the three dots and disable "Tip of the day" and "Help and Feedback".
+  - 𝐆𝐚𝐛𝐫𝐢𝐞𝐥𝐞 𝐂𝐚𝐯𝐚𝐥𝐥𝐚𝐫𝐨 :
 
-    - An overview of all my notes are in the "Tree view" drawer, on the left column of Dendron's view.
+    - Head of Simulation and Data Lab @ Jülich Supercomputing Centre
+    - Adjunct Associate Professor @ University of Iceland.
+
+  - 𝐏𝐢𝐨𝐭𝐫 𝐆𝐚𝐰𝐫𝐨𝐧 :
+
+    - Scientific Computing & Information Technology Group Leader @ AstroCeNT: Particle Astrophysics Science and Technology Centre, International Research Agenda, Nicolaus Copernicus Astronomical Centre.
+
+🚩 : Some of my projects intentionally remain without updates to serve as a record of my ongoing development and learning journey. 😁
